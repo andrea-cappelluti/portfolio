@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Andrea Cappelluti · AI Engineer</title>
+  <meta name="description" content="Andrea Cappelluti, AI engineer and data scientist from Rome, working in Milan: AI agents, data platforms like MobilityLens, and machine-learning forecasts of passenger show-up at Rome Fiumicino.">
+  <meta name="theme-color" content="#000000">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    // Views are hidden until the router picks one; if the script never runs, show everything.
+    document.documentElement.classList.add('js');
+    setTimeout(() => { if (!document.querySelector('.view.is-active')) document.documentElement.classList.remove('js'); }, 3000);
+  </script>
+  <script type="module" src="/js/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="bar">
+    <a class="bar-mark" href="/">Andrea Cappelluti</a>
+    <nav class="bar-links" aria-label="Pages">
+      <a href="/work">Work</a>
+      <a href="/projects">Projects</a>
+      <a href="/thesis">Thesis</a>
+      <a href="/about">About</a>
+      <a href="/ask">Ask</a>
+    </nav>
+    <a class="button button-sm button-ink bar-action" href="/about#contact">Contact</a>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HOME ============ -->
+    <section class="view" data-route="/" data-title="Andrea Cappelluti · AI Engineer">
+      <div class="band band-dark hero">
+        <div class="wrap hero-copy">
+          <h1 class="display" tabindex="-1" data-reveal>AI engineer and data scientist</h1>
+          <p class="lead" data-reveal style="--i:1">I'm Andrea, from Rome, AI engineer at Yellow Tech in Milan. I build AI agents, and my thesis forecasts check-ins at Fiumicino.</p>
+          <div class="actions" data-reveal style="--i:2">
+            <a class="button button-ink" href="/projects">See my projects</a>
+            <a class="button button-line" href="/CV_Andrea_Cappelluti.pdf" download>Download CV</a>
+          </div>
+        </div>
+
+        <!-- The data-flow film (hero-video/): muted autoplay loop, music on request. -->
+        <figure class="hero-film">
+          <video id="hero-video" src="/assets/hero/flow.mp4" poster="/assets/hero/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="From raw data to AI: raw data becomes a clean table, then charts, machine-learning and deep-learning forecasts for Fiumicino, and a language model that powers an AI document platform."></video>
+          <div class="film-controls">
+          <button class="film-btn playpause" type="button" aria-pressed="false" aria-label="Pause video">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="icon-pause" d="M8.5 6v12M15.5 6v12"/><path class="icon-play" d="M8 5.5v13l10.5-6.5z"/></svg>
+          </button>
+          <button class="film-btn sound" type="button" aria-pressed="false" aria-label="Play music">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="sound-cone" d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="sound-on" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="sound-off" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+          </button>
+          </div>
+        </figure>
+      </div>
+
+      <div class="band">
+        <div class="wrap">
+          <div class="band-head">
+            <h2 class="h2" data-reveal>Agents, data platforms and forecasts</h2>
+            <p class="lead muted" data-reveal style="--i:1">Two theses, a mobility platform for Milan, a multi-agent system and four other projects, from university to production.</p>
+          </div>
+          <ul class="tiles" aria-label="Selected projects">
+            <li data-reveal><a class="tile" href="/projects/mobility-lens">
+              <span class="eyebrow">Basco&amp;T · 2026</span>
+              <span class="tile-title">MobilityLens, Milan</span>
+              <span class="tile-text">Public transport meets house prices: pipelines, dashboards and a RAG for property reports.</span>
+              <span class="go" aria-hidden="true">→</span>
+            </a></li>
+            <li data-reveal style="--i:1"><a class="tile" href="/thesis">
+              <span class="eyebrow">MSc thesis · LUISS · 2026</span>
+              <span class="tile-title">When passengers show up</span>
+              <span class="tile-text">Check-in forecasts at Rome Fiumicino, from one hour to one week ahead.</span>
+              <span class="go" aria-hidden="true">→</span>
+            </a></li>
+            <li data-reveal style="--i:2"><a class="tile" href="/projects/multi-agent-analytics">
+              <span class="eyebrow">With Reply · 2025</span>
+              <span class="tile-title">Questions in, charts out</span>
+              <span class="tile-text">A multi-agent system that answers plain-language questions on public data.</span>
+              <span class="go" aria-hidden="true">→</span>
+            </a></li>
+            <li data-reveal style="--i:3"><a class="tile" href="/projects/sdg7-energy">
+              <span class="eyebrow">Academic project · 2024</span>
+              <span class="tile-title">Energy use, predicted</span>
+              <span class="tile-text">World Bank, IEA and UN data on SDG7, with a Random Forest at R² 0.89.</span>
+              <span class="go" aria-hidden="true">→</span>
+            </a></li>
+          </ul>
+          <div class="band-cta" data-reveal><a class="button button-ink" href="/projects">All 7 projects</a></div>
+        </div>
+      </div>
+
+      <div class="band band-dark">
+        <div class="wrap feature">
+          <div class="feature-copy">
+            <h2 class="h2" data-reveal>Forecasts for the check-in desks</h2>
+            <p class="lead muted" data-reveal style="--i:1">29.5 million check-ins at Rome Fiumicino, modelled quarter hour by quarter hour. LightGBM cut the error by a third against the seasonal baseline.</p>
+            <div class="actions" data-reveal style="--i:2"><a class="button button-ink" href="/thesis">Read about the thesis</a></div>
+          </div>
+          <div class="feature-visual" data-reveal style="--i:1">
+            <p class="feature-big">−33%</p>
+            <p class="small muted">error vs. seasonal baseline</p>
+            <span class="spark" aria-hidden="true"><i style="--v:.18"></i><i style="--v:.3"></i><i style="--v:.52"></i><i style="--v:.8"></i><i class="is-peak" style="--v:1"></i><i style="--v:.86"></i><i style="--v:.7"></i><i style="--v:.62"></i><i style="--v:.55"></i><i style="--v:.5"></i><i style="--v:.38"></i><i style="--v:.24"></i><i style="--v:.12"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="band">
+        <div class="wrap duo">
+          <a class="tile tile-tall" href="/work" data-reveal>
+            <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Since August 2026</span>
+            <span class="tile-title">AI Engineer at Yellow Tech</span>
+            <span class="tile-text">AI agents, workflow automation and OCR + LLM document pipelines for real production environments.</span>
+            <span class="go" aria-hidden="true">→</span>
+          </a>
+          <a class="tile tile-tall" href="/about" data-reveal style="--i:1">
+            <span class="eyebrow">Toolbox</span>
+            <span class="tile-title">What I work with</span>
+            <span class="chips"><span>Python</span><span>SQL</span><span>LightGBM</span><span>PyTorch</span><span>LLM APIs</span><span>AI agents</span><span>MCP</span><span>RAG</span><span>Docker</span><span>AWS SageMaker</span></span>
+            <span class="go" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="band band-close">
+        <div class="wrap band-head">
+          <h2 class="h2" data-reveal>Let's talk</h2>
+          <p class="lead muted" data-reveal style="--i:1">Open to conversations about AI engineering, data science and forecasting.</p>
+          <div class="actions" data-reveal style="--i:2">
+            <a class="button button-ink" href="mailto:andreacappelluti7@gmail.com?subject=Hello%20Andrea">Write an email</a>
+            <a class="button button-soft" href="https://www.linkedin.com/in/andrea-cappelluti-9b1a61282" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="view page" data-route="/work" data-title="Work · Andrea Cappelluti">
+      <div class="wrap">
+        <div class="page-head">
+          <h1 class="h1" tabindex="-1" data-reveal>Work and study</h1>
+          <p class="lead muted" data-reveal style="--i:1">Three roles in 2026, from customer analytics to AI engineering, alongside a master's in data science.</p>
+        </div>
+
+        <h2 class="group-title" data-reveal>Work</h2>
+        <div class="group" data-reveal>
+          <details class="item" open>
+            <summary><span class="ico ico-accent" aria-hidden="true">YT</span><span class="li-main"><b>Yellow Tech</b><span>AI Engineer · Milan</span></span><span class="li-end is-now">Aug 2026 – now</span></summary>
+            <div class="item-body">
+              <p>Yellow Tech is the AI transformation company. I make AI useful inside real businesses, end to end.</p>
+              <ul class="bullets">
+                <li>Design and build AI agents and AI-powered software, delivered as end-to-end implementations for real production environments.</li>
+                <li>Optimise business processes and workflows by integrating AI-driven tools and automation.</li>
+                <li>Build document-processing pipelines that combine OCR models and LLMs to turn business documents into validated, structured data.</li>
+              </ul>
+            </div>
+          </details>
+          <details class="item">
+            <summary><span class="ico" aria-hidden="true">MX</span><span class="li-main"><b>MSX International</b><span>Customer Insights Analyst</span></span><span class="li-end">Apr – Jul 2026</span></summary>
+            <div class="item-body">
+              <ul class="bullets">
+                <li>Maintained and processed large-scale vehicle databases through data cleaning and quality control, optimising operational workflows and minimising service downtime.</li>
+                <li>Analysed customer data to identify needs and deliver tailored solutions to Ford customers, raising satisfaction and service quality.</li>
+              </ul>
+            </div>
+          </details>
+          <details class="item">
+            <summary><span class="ico" aria-hidden="true">BT</span><span class="li-main"><b>Basco&amp;T Consulting</b><span>Data Science Intern</span></span><span class="li-end">Feb – Apr 2026</span></summary>
+            <div class="item-body">
+              <ul class="bullets">
+                <li>Contributed to MobilityLens, combining Milan's public transport data with real-estate prices to turn complex datasets into strategic insight.</li>
+                <li>Built data pipelines and interactive dashboards on mobility patterns and housing trends, supporting strategic reports for public-transport clients.</li>
+                <li>Built a RAG system that writes personalised real-estate evaluations, with public transport information and composite neighbourhood indicators.</li>
+              </ul>
+              <a class="link-go" href="/projects/mobility-lens">MobilityLens project</a>
+            </div>
+          </details>
+        </div>
+
+        <h2 class="group-title" data-reveal>Education</h2>
+        <div class="group" data-reveal>
+          <details class="item">
+            <summary><span class="ico" aria-hidden="true">LU</span><span class="li-main"><b>LUISS Guido Carli</b><span>MSc Data Science and Management</span></span><span class="li-end">2024 – 2026</span></summary>
+            <div class="item-body">
+              <p>Taught in English. Thesis in machine learning with Giuseppe F. Italiano, co-advisor Vincenzo Lomonaco: forecasting passenger check-in show-up curves at Rome Fiumicino.</p>
+              <ul class="grades">
+                <li><span>Econometrics</span><b>30 cum laude</b></li>
+                <li><span>Technology Entrepreneurship</span><b>30 cum laude</b></li>
+                <li><span>Advanced Statistics</span><b>29</b></li>
+                <li><span>Machine Learning</span><b>28</b></li>
+                <li><span>Data Visualization</span><b>28</b></li>
+                <li><span>Data Privacy and Security</span><b>27</b></li>
+              </ul>
+              <a class="link-go" href="/thesis">Read about the thesis</a>
+            </div>
+          </details>
+          <details class="item">
+            <summary><span class="ico" aria-hidden="true">TT</span><span class="li-main"><b>TalTech, Tallinn</b><span>Erasmus+ programme</span></span><span class="li-end">Sep 2025 – Feb 2026</span></summary>
+            <div class="item-body">
+              <p>A semester at Tallinn University of Technology, Estonia, studying in English during the LUISS master's.</p>
+            </div>
+          </details>
+          <details class="item">
+            <summary><span class="ico" aria-hidden="true">R3</span><span class="li-main"><b>Roma Tre University</b><span>BSc Economics and Big Data, 102/110</span></span><span class="li-end">2021 – 2024</span></summary>
+            <div class="item-body">
+              <p>Thesis with Eleonora Pierucci on artificial intelligence in online platforms: impacts, opportunities and challenges.</p>
+              <ul class="grades">
+                <li><span>Statistical Learning</span><b>30</b></li>
+                <li><span>Digitalization of the Labor Market</span><b>30</b></li>
+                <li><span>Databases and Big Data</span><b>29</b></li>
+                <li><span>Machine Learning and Data Processing</span><b>28</b></li>
+                <li><span>Economics of Digital Markets</span><b>28</b></li>
+                <li><span>Statistics for Big Data</span><b>26</b></li>
+              </ul>
+              <a class="link-go" href="/projects/bsc-thesis">Read about the thesis</a>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="view page" data-route="/projects" data-title="Projects · Andrea Cappelluti">
+      <div class="wrap">
+        <div class="page-head">
+          <h1 class="h1" tabindex="-1" data-reveal>Projects</h1>
+          <p class="lead muted" data-reveal style="--i:1">Two theses, work with companies and academic projects, from forecasting to multi-agent systems.</p>
+        </div>
+        <div class="tabs" role="group" aria-label="Filter projects" data-reveal style="--i:2">
+          <button type="button" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-filter="thesis" aria-pressed="false">Theses</button>
+          <button type="button" data-filter="industry" aria-pressed="false">With companies</button>
+          <button type="button" data-filter="academic" aria-pressed="false">Academic</button>
+        </div>
+        <ul class="tiles project-tiles" aria-label="Projects">
+          <li data-kind="industry"><a class="tile" href="/projects/mobility-lens">
+            <span class="eyebrow">Basco&amp;T Consulting · Feb – Apr 2026</span>
+            <span class="tile-title">MobilityLens, Milan</span>
+            <span class="tile-text">Basco&amp;T's data-intelligence platform for the territory. I built Milan pipelines, dashboards and a RAG for property reports.</span>
+            <span class="chips"><span>Python</span><span>Supabase</span><span>RAG</span><span>Power BI</span></span>
+            <span class="go" aria-hidden="true">→</span>
+          </a></li>
+          <li data-kind="thesis"><a class="tile" href="/thesis">
+            <span class="eyebrow">MSc thesis · LUISS · 2026</span>
+            <span class="tile-title">When passengers show up</span>
+            <span class="tile-text">Forecasting check-in show-up at Rome Fiumicino, from one hour to one week ahead. −29–33% error vs. the seasonal baseline.</span>
+            <span class="chips"><span>LightGBM</span><span>TimesFM</span><span>SageMaker</span></span>
+            <span class="go" aria-hidden="true">→</span>
+          </a></li>
+          <li data-kind="thesis"><a class="tile" href="/projects/bsc-thesis">
+            <span class="eyebrow">BSc thesis · Roma Tre · 2024</span>
+            <span class="tile-title">AI in online platforms</span>
+            <span class="tile-text">How online platforms put artificial intelligence to work: impacts, opportunities and challenges.</span>
+            <span class="chips"><span>Digital markets</span><span>Platform economics</span></span>
+            <span class="go" aria-hidden="true">→</span>
+          </a></li>
+          <li data-kind="industry"><a class="tile" href="/projects/multi-agent-analytics">
+            <span class="eyebrow">Reply project · Mar – Apr 2025</span>
+            <span class="tile-title">Questions in, charts out</span>
+            <span class="tile-text">A multi-agent system that answers plain-language questions on public data with a narrative and a chart.</span>
+            <span class="chips"><span>GPT-4.1</span><span>Agents SDK</span><span>LlamaIndex</span></span>
+            <span class="go" aria-hidden="true">→</span>
+          </a></li>
+          <li data-kind="industry"><a class="tile" href="/projects/sales-forecasting">
+            <span class="eyebrow">Unieuro project · Mar – Apr 2025</span>
+            <span class="tile-title">Retail sales forecasting</span>
+            <span class="tile-text">2024 sales volumes for smartphones and vacuum cleaners, delivered in Power BI.</span>
+            <span class="chips"><span>XGBoost</span><span>scikit-learn</span><span>Power BI</span></span>
+            <span class="go" aria-hidden="true">→</span>
+          </a></li>
+          <li data-kind="academic"><a class="tile" href="/projects/sdg7-energy">
+            <span class="eyebrow">Academic project · Mar – May 2024</span>
+            <span class="tile-title">Energy use, predicted</span>
+            <span class="tile-text">Renewables, CO₂ and electrification data for UN SDG7, with a Random Forest at R² 0.89.</span>
+            <span class="chips"><span>Random Forest</span><span>pandas</span><span>Tableau</span></span>
+            <span class="go" aria-hidden="true">→</span>
+          </a></li>
+          <li data-kind="academic"><a class="tile" href="/projects/tv-popularity">
+            <span class="eyebrow">Academic project · Jan – Mar 2024</span>
+            <span class="tile-title">What makes a show popular</span>
+            <span class="tile-text">TV series and movies from Kaggle: popularity follows longevity more than genre.</span>
+            <span class="chips"><span>SQL</span><span>K-Means</span><span>Orange</span></span>
+            <span class="go" aria-hidden="true">→</span>
+          </a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PROJECT DETAILS ============ -->
+    <article class="view page detail" data-route="/projects/mobility-lens" data-title="MobilityLens · Andrea Cappelluti">
+      <div class="wrap">
+        <div class="detail-head">
+          <a class="round back" href="/projects" aria-label="All projects">←</a>
+          <p class="eyebrow">Basco&amp;T Consulting · Data Science Intern · Feb – Apr 2026</p>
+          <h1 class="h1" tabindex="-1">MobilityLens, Milan</h1>
+          <p class="lead muted">MobilityLens is Basco&amp;T's data-intelligence platform for the territory: planning rules, public investment, real-estate prices and mobility in one place. I worked on Milan, where public transport meets house prices.</p>
+          <div class="actions"><a class="button button-ink" href="https://www.mobilitylens.com/" target="_blank" rel="noopener">Visit mobilitylens.com <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <div class="detail-grid">
+          <ul class="group points">
+            <li>Built data pipelines that combine Milan's public transport data with real-estate prices.</li>
+            <li>Built interactive dashboards on mobility patterns and housing trends, used in strategic reports for public-transport clients.</li>
+            <li>Built a RAG system that writes personalised real-estate evaluations, with public transport information and composite neighbourhood indicators.</li>
+          </ul>
+          <div class="side"><p class="side-title">Stack</p><span class="chips"><span>Python</span><span>SQL</span><span>Supabase</span><span>RAG</span><span>LLM APIs</span><span>Power BI</span></span></div>
+        </div>
+        <a class="next" href="/projects/bsc-thesis"><span>Next project</span>AI in online platforms</a>
+      </div>
+    </article>
+
+    <article class="view page detail" data-route="/projects/bsc-thesis" data-title="BSc thesis · Andrea Cappelluti">
+      <div class="wrap">
+        <div class="detail-head">
+          <a class="round back" href="/projects" aria-label="All projects">←</a>
+          <p class="eyebrow">BSc thesis · Roma Tre University · 2024</p>
+          <h1 class="h1" tabindex="-1">AI in online platforms</h1>
+          <p class="lead muted">My bachelor's thesis in Economics of Digital Markets studies how online platforms implement artificial intelligence, and what that brings: impacts, opportunities and challenges.</p>
+        </div>
+        <div class="detail-grid">
+          <dl class="group facts">
+            <div><dt>Title</dt><dd>Implementation of Artificial Intelligence in Online Platforms: Impacts, Opportunities and Challenges</dd></div>
+            <div><dt>Subject</dt><dd>Economics of Digital Markets</dd></div>
+            <div><dt>Advisor</dt><dd>Eleonora Pierucci</dd></div>
+            <div><dt>Degree</dt><dd>BSc Economics and Big Data, 102/110</dd></div>
+          </dl>
+          <div class="side"><p class="side-title">Topics</p><span class="chips"><span>Artificial intelligence</span><span>Online platforms</span><span>Digital markets</span></span></div>
+        </div>
+        <a class="next" href="/projects/multi-agent-analytics"><span>Next project</span>Questions in, charts out</a>
+      </div>
+    </article>
+
+    <article class="view page detail" data-route="/projects/multi-agent-analytics" data-title="Multi-agent analytics · Andrea Cappelluti">
+      <div class="wrap">
+        <div class="detail-head">
+          <a class="round back" href="/projects" aria-label="All projects">←</a>
+          <p class="eyebrow">Reply project · Mar – Apr 2025</p>
+          <h1 class="h1" tabindex="-1">Questions in, charts out</h1>
+          <p class="lead muted">A multi-agent system that analyses public datasets from plain-language questions: self-service civic analytics for everyone.</p>
+        </div>
+        <div class="detail-grid">
+          <ul class="group points">
+            <li>Turns natural-language questions into automated data analysis and visualisations, using GPT-4.1, Python and Streamlit.</li>
+            <li>Uses OpenAI's Agents SDK and LlamaIndex to interpret the question, pick the right public dataset, and generate and run Python code (pandas, matplotlib).</li>
+            <li>Prepares several civic datasets first: type normalisation, translation and schema alignment.</li>
+            <li>Returns both a narrative insight and a chart, in a bilingual English and Italian interface.</li>
+          </ul>
+          <div class="side"><p class="side-title">Stack</p><span class="chips"><span>GPT-4.1</span><span>OpenAI Agents SDK</span><span>LlamaIndex</span><span>Streamlit</span><span>pandas</span></span></div>
+        </div>
+        <a class="next" href="/projects/sales-forecasting"><span>Next project</span>Retail sales forecasting</a>
+      </div>
+    </article>
+
+    <article class="view page detail" data-route="/projects/sales-forecasting" data-title="Retail sales forecasting · Andrea Cappelluti">
+      <div class="wrap">
+        <div class="detail-head">
+          <a class="round back" href="/projects" aria-label="All projects">←</a>
+          <p class="eyebrow">Unieuro project · Mar – Apr 2025</p>
+          <h1 class="h1" tabindex="-1">Retail sales forecasting</h1>
+          <p class="lead muted">A project I led to predict 2024 sales of smartphones and vacuum cleaners, combining business intelligence, statistics and machine learning.</p>
+        </div>
+        <div class="detail-grid">
+          <ul class="group points">
+            <li>Extensive preprocessing, cleaning and feature engineering to extract seasonality, promotions and historical demand.</li>
+            <li>Compared XGBoost, Gradient Boosting, Random Forest and linear regression, with cross-validation on RMSE, MAE and R².</li>
+            <li>Delivered the forecasts in interactive Power BI dashboards for KPIs and scenario planning.</li>
+          </ul>
+          <div class="side"><p class="side-title">Stack</p><span class="chips"><span>Python</span><span>XGBoost</span><span>scikit-learn</span><span>pandas</span><span>Power BI</span></span></div>
+        </div>
+        <a class="next" href="/projects/sdg7-energy"><span>Next project</span>Energy use, predicted</a>
+      </div>
+    </article>
+
+    <article class="view page detail" data-route="/projects/sdg7-energy" data-title="SDG7 energy analysis · Andrea Cappelluti">
+      <div class="wrap">
+        <div class="detail-head">
+          <a class="round back" href="/projects" aria-label="All projects">←</a>
+          <p class="eyebrow">Academic project · Mar – May 2024</p>
+          <h1 class="h1" tabindex="-1">Energy use, predicted</h1>
+          <p class="lead muted">Data on renewables, CO₂ and access to electricity for UN Sustainable Development Goal 7, brought together to explain and predict energy use per person.</p>
+        </div>
+        <div class="detail-grid">
+          <ul class="group points">
+            <li>Aggregated and cleaned World Bank, IEA and UN data, with imputation and scaling.</li>
+            <li>Time-series and geospatial visuals, plus a correlation analysis across energy indicators.</li>
+            <li>Predicted per-capita primary energy consumption: Random Forest reached R² 0.89, against 0.45 for linear regression, tuned with GridSearchCV.</li>
+            <li>Interactive dashboards for policy reading.</li>
+          </ul>
+          <div class="side"><p class="side-title">Stack</p><span class="chips"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>Random Forest</span><span>Seaborn</span><span>Tableau</span></span></div>
+        </div>
+        <a class="next" href="/projects/tv-popularity"><span>Next project</span>What makes a show popular</a>
+      </div>
+    </article>
+
+    <article class="view page detail" data-route="/projects/tv-popularity" data-title="TV and movie popularity · Andrea Cappelluti">
+      <div class="wrap">
+        <div class="detail-head">
+          <a class="round back" href="/projects" aria-label="All projects">←</a>
+          <p class="eyebrow">Academic project · Jan – Mar 2024</p>
+          <h1 class="h1" tabindex="-1">What makes a show popular</h1>
+          <p class="lead muted">A Kaggle dataset of TV series and movies, analysed to find what drives popularity and ratings.</p>
+        </div>
+        <div class="detail-grid">
+          <ul class="group points">
+            <li>SQL on SQLite for extraction and exploratory analysis.</li>
+            <li>K-Means clustering and association rules to group titles and find patterns.</li>
+            <li>Decision Tree, Random Forest and linear regression in Orange Data Mining, with Spearman correlation.</li>
+            <li>Finding: popularity tracks a show's longevity, its seasons and episodes, more than its genre.</li>
+          </ul>
+          <div class="side"><p class="side-title">Stack</p><span class="chips"><span>SQL</span><span>SQLite</span><span>Orange Data Mining</span><span>Python</span><span>K-Means</span></span></div>
+        </div>
+        <a class="next" href="/projects/mobility-lens"><span>Next project</span>MobilityLens, Milan</a>
+      </div>
+    </article>
+
+    <!-- ============ THESIS ============ -->
+    <section class="view page" data-route="/thesis" data-title="Thesis · Andrea Cappelluti">
+      <div class="wrap">
+        <div class="page-head">
+          <p class="eyebrow" data-reveal>MSc thesis · LUISS Guido Carli · 2026</p>
+          <h1 class="h1" tabindex="-1" data-reveal>When passengers show up</h1>
+          <p class="lead muted" data-reveal style="--i:1">My MSc thesis forecasts how many passengers reach the check-in desks at Rome Fiumicino, quarter hour by quarter hour, so the airport can staff them ahead.</p>
+        </div>
+
+        <dl class="stats">
+          <div data-reveal><dt>29.5M</dt><dd>check-in records</dd></div>
+          <div data-reveal style="--i:1"><dt>520K</dt><dd>departures linked</dd></div>
+          <div data-reveal style="--i:2"><dt>3+ years</dt><dd>of history</dd></div>
+          <div class="is-key" data-reveal style="--i:3"><dt>−29–33%</dt><dd>error vs. seasonal baseline</dd></div>
+        </dl>
+      </div>
+
+      <div class="band band-dark model-band">
+        <div class="wrap model" data-reveal>
+          <h2 class="h3">Build a morning at the desks</h2>
+          <p class="model-help muted">Switch flights on and off and set how many passengers use a desk instead of checking in online. Each flight spreads its passengers over the hours before departure; the curve is their sum.</p>
+          <div class="model-flights" role="group" aria-label="Departures"></div>
+          <label class="model-share">
+            <span>Passengers at the desk: <output id="share-out">45%</output></span>
+            <input id="share" type="range" min="20" max="80" step="5" value="45">
+          </label>
+          <div class="model-chart" aria-live="polite">
+            <p class="model-fallback">The model runs in your browser; turn on JavaScript to draw the curve.</p>
+          </div>
+          <p class="model-readout">Busiest quarter hour <b id="peak-time">–</b> with <b id="peak-pax">–</b> passengers at the desks, so <b id="peak-desks">–</b> desks open.</p>
+          <p class="small muted">Illustrative curves that show the idea, not Fiumicino data. Desks assume two minutes per passenger.</p>
+        </div>
+      </div>
+
+      <div class="wrap method">
+        <div data-reveal>
+          <h2 class="h3">How it works</h2>
+          <p>Check-ins are counted in bins from 5 to 30 minutes and forecast from one hour to one week ahead. The features are leakage-free: a show-up kernel, the typical arrival pattern before a departure, is convolved with the flight schedule.</p>
+          <p>A multi-horizon LightGBM model on those features cut error by 29–33% against the seasonal baseline, statistically significant on every setup.</p>
+        </div>
+        <div data-reveal style="--i:1">
+          <h2 class="h3">Benchmarked against</h2>
+          <ul class="bullets">
+            <li>XGBoost and CatBoost</li>
+            <li>TiDE and Temporal Fusion Transformer, trained on AWS SageMaker GPUs</li>
+            <li>TimesFM 3.0, a time-series foundation model fine-tuned with LoRA</li>
+          </ul>
+          <p class="small muted">Advisor Giuseppe F. Italiano, co-advisor Vincenzo Lomonaco. LUISS Guido Carli, 2026.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="view page" data-route="/about" data-title="About · Andrea Cappelluti">
+      <div class="wrap">
+        <div class="page-head">
+          <h1 class="h1" tabindex="-1" data-reveal>About me</h1>
+          <p class="lead muted" data-reveal style="--i:1">From Rome. Before data, I played basketball at professional level, and I'm still a sport science enthusiast.</p>
+        </div>
+        <div class="about-grid">
+          <div class="bio">
+            <p data-reveal style="--i:2">I studied Economics and Big Data at Roma Tre, then Data Science and Management at LUISS, with an Erasmus+ semester at TalTech in Tallinn. My thesis applies machine learning to passenger flows at Fiumicino.</p>
+            <p data-reveal style="--i:3">Since August 2026 I've been an AI engineer at Yellow Tech in Milan, building AI agents and OCR + LLM document pipelines for real production environments. Outside work I hike and photograph trekking routes.</p>
+          </div>
+          <aside class="contact-card" id="contact" data-reveal style="--i:2">
+            <h2 class="h3">Let's talk</h2>
+            <dl>
+              <div><dt>Email</dt><dd><a href="mailto:andreacappelluti7@gmail.com">andreacappelluti7@gmail.com</a></dd></div>
+              <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/andrea-cappelluti-9b1a61282" target="_blank" rel="noopener">andrea-cappelluti</a></dd></div>
+              <div><dt>Based in</dt><dd>Milan, Italy</dd></div>
+              <div><dt>From</dt><dd>Rome</dd></div>
+              <div><dt>Languages</dt><dd>Italian, English C1, Spanish A2</dd></div>
+            </dl>
+            <div class="actions">
+              <a class="button button-ink" href="mailto:andreacappelluti7@gmail.com?subject=Hello%20Andrea">Write an email</a>
+              <a class="button button-line" href="/CV_Andrea_Cappelluti.pdf" download>Download CV</a>
+              <a class="button button-line" href="/ask">Ask my AI assistant</a>
+            </div>
+          </aside>
+        </div>
+
+        <h2 class="group-title" data-reveal>Skills</h2>
+        <div class="group skills" data-reveal>
+          <div class="skill"><p class="skill-title">AI engineering</p><span class="chips"><span>AI agents and multi-agent systems</span><span>LLM APIs</span><span>Model Context Protocol</span><span>RAG</span><span>OCR + LLM extraction</span><span>Prompt engineering</span><span>Claude Code</span><span>Gemini CLI</span><span>Google AI Studio</span></span></div>
+          <div class="skill"><p class="skill-title">Machine learning</p><span class="chips"><span>scikit-learn</span><span>LightGBM</span><span>XGBoost</span><span>CatBoost</span><span>PyTorch</span><span>TensorFlow</span><span>Darts</span><span>Optuna</span><span>Time-series forecasting</span><span>LoRA / PEFT fine-tuning</span></span></div>
+          <div class="skill"><p class="skill-title">Data and BI</p><span class="chips"><span>Python</span><span>R</span><span>SQL</span><span>Stata</span><span>DuckDB</span><span>Power BI</span><span>Tableau</span><span>Orange Data Mining</span><span>MS Office</span></span></div>
+          <div class="skill"><p class="skill-title">Cloud and deployment</p><span class="chips"><span>Docker</span><span>Git</span><span>Railway</span><span>Vercel</span><span>Supabase</span><span>AWS SageMaker (GPU training)</span></span></div>
+        </div>
+
+        <h2 class="group-title" data-reveal>Certificates</h2>
+        <div class="certs" data-reveal>
+          <div><p class="cert-org">Anthropic</p><ul><li>Claude Certified Architect – Foundations, 2026</li><li>Introduction to Model Context Protocol</li><li>AI Fluency: Framework &amp; Foundations</li></ul></div>
+          <div><p class="cert-org">Codecademy</p><ul><li>How to Analyze Business Metrics with SQL</li><li>Learn Statistics with R</li><li>BI Dashboards with Power BI</li><li>BI Dashboards with Tableau</li><li>Learn Prompt Engineering</li></ul></div>
+          <div><p class="cert-org">LUISS Guido Carli</p><ul><li>AI Literacy Digital Certificate</li></ul><p class="cert-org">StudySection</p><ul><li>Python (Advanced)</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ASK ============ -->
+    <section class="view page" data-route="/ask" data-title="Ask · Andrea Cappelluti">
+      <div class="wrap">
+        <div class="page-head">
+          <h1 class="h1" tabindex="-1" data-reveal>Ask about me</h1>
+          <p class="lead muted" data-reveal style="--i:1">An AI assistant that knows my CV, work and projects. It runs on free models, so now and then it may be slow or busy.</p>
+        </div>
+        <div class="chat" data-reveal style="--i:2">
+          <ol class="chat-log" aria-live="polite" aria-label="Conversation">
+            <li class="msg msg-bot">Hi! Ask me anything about Andrea's experience, projects or skills.</li>
+          </ol>
+          <div class="chips chat-starters">
+            <button type="button">What does Andrea do at Yellow Tech?</button>
+            <button type="button">What is his thesis about?</button>
+            <button type="button">Which projects use LLMs?</button>
+          </div>
+          <form class="chat-form">
+            <label class="sr-only" for="chat-input">Your question</label>
+            <input id="chat-input" name="q" maxlength="1000" autocomplete="off" placeholder="Ask about Andrea's work…" required>
+            <button class="button button-ink" type="submit">Send</button>
+          </form>
+          <p class="small muted">Answers are AI-generated and can be wrong. Questions go to free models on OpenRouter, whose providers may store them, so please don't share personal data.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot band-dark">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <p class="foot-name">Andrea Cappelluti</p>
+          <p class="small muted">AI engineer in Milan, from Rome</p>
+        </div>
+        <nav aria-label="Pages"><p class="foot-head">Pages</p><a href="/work">Work</a><a href="/projects">Projects</a><a href="/thesis">Thesis</a><a href="/about">About</a><a href="/ask">Ask</a></nav>
+        <nav aria-label="Contact"><p class="foot-head">Contact</p><a href="mailto:andreacappelluti7@gmail.com">Email</a><a href="https://www.linkedin.com/in/andrea-cappelluti-9b1a61282" target="_blank" rel="noopener">LinkedIn</a><a href="/CV_Andrea_Cappelluti.pdf" download>Download CV</a></nav>
+      </div>
+      <p class="small muted foot-copy">© 2026 Andrea Cappelluti</p>
+    </div>
+  </footer>
+</body>
+</html>

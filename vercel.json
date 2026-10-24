@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/((?!api/|assets/|js/|styles\\.css|CV_Andrea_Cappelluti\\.pdf).*)", "destination": "/index.html" }]
+}

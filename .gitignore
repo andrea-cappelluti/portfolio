@@ -1,0 +1,9 @@
+# Secrets and local tooling
+.env*
+.vercel/
+.DS_Store
+
+# Local workspaces, not part of the site (hero-video/ is the source of assets/hero/flow.mp4)
+hero-video/
+.taste-skill/
+.claude/
