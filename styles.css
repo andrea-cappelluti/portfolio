@@ -125,12 +125,19 @@ p { text-wrap: pretty; }
 .bar.is-dark { background: rgb(0 0 0 / 0.6); color: var(--d-text); --btn-bg: var(--white); --btn-fg: var(--ink); }
 .bar-mark { font-family: var(--display); font-size: 1.1875rem; font-weight: 600; letter-spacing: -0.02em; text-decoration: none; white-space: nowrap; }
 .bar-links { display: flex; gap: 2px; margin-left: auto; }
-.bar-links a { padding: 8px 18px; border-radius: 50px; font-family: var(--display); font-weight: 500; letter-spacing: 0; text-decoration: none; transition: background-color 200ms var(--ease); }
-.bar-links a[aria-current="page"] { background: rgb(25 28 31 / 0.07); }
-.bar.is-dark .bar-links a[aria-current="page"] { background: rgb(255 255 255 / 0.14); }
+.bar-links > a { padding: 8px 18px; border-radius: 50px; font-family: var(--display); font-weight: 500; letter-spacing: 0; text-decoration: none; transition: background-color 200ms var(--ease); }
+.bar-links > a[aria-current="page"] { background: rgb(25 28 31 / 0.07); }
+.bar-sheet-actions { display: none; }
+.bar.is-dark .bar-links > a[aria-current="page"] { background: rgb(255 255 255 / 0.14); }
+.bar-menu { display: none; place-content: center; gap: 5px; flex: none; width: 40px; height: 40px; border-radius: 50%; background: rgb(25 28 31 / 0.07); }
+.bar.is-dark .bar-menu { background: rgb(255 255 255 / 0.14); }
+.bar-menu span { width: 16px; height: 2px; border-radius: 2px; background: currentColor; transition: transform 250ms var(--ease); }
+.bar.is-open .bar-menu span:first-child { transform: translateY(3.5px) rotate(45deg); }
+.bar.is-open .bar-menu span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+.menu-open { overflow: hidden; }
 @media (hover: hover) and (pointer: fine) {
-  .bar-links a:hover { background: rgb(25 28 31 / 0.07); }
-  .bar.is-dark .bar-links a:hover { background: rgb(255 255 255 / 0.14); }
+  .bar-links > a:hover { background: rgb(25 28 31 / 0.07); }
+  .bar.is-dark .bar-links > a:hover { background: rgb(255 255 255 / 0.14); }
 }
 
 /* ---------- views and bands ---------- */
@@ -381,8 +388,22 @@ html:not(.js) .tabs { display: none; }
   .bar { flex-wrap: wrap; align-content: center; gap: 4px 12px; }
   .bar-mark { flex: 1; font-size: 1.0625rem; }
   .bar-links { order: 3; width: calc(100% + 12px); margin: 0 0 0 -12px; }
-  .bar-links a { padding: 7px 10px; }
+  .bar-links > a { padding: 7px 10px; }
 
+  /* With JavaScript the bar is one row, and the links open as a full-screen sheet like Revolut's app menu. */
+  :root.js { --bar-h: 64px; }
+  .js .bar { flex-wrap: nowrap; gap: 8px; }
+  .js .bar-menu { display: grid; }
+  .js .bar-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; width: auto; height: calc(100dvh - var(--bar-h)); margin: 0; padding: 12px var(--gutter) 40px; overflow-y: auto; background: var(--white); color: var(--ink); visibility: hidden; opacity: 0; transform: translateY(-12px); transition: opacity 250ms var(--ease), transform 250ms var(--ease), visibility 0s 250ms; }
+  .js .bar.is-open .bar-links { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+  .js .bar-links > a, .js .bar.is-dark .bar-links > a[aria-current="page"] { padding: 8px 0; border-radius: 0; background: none; font-size: 2rem; letter-spacing: -0.02em; }
+  .js .bar-sheet-actions { display: grid; gap: 10px; margin-top: auto; padding-top: 32px; }
+  .js .bar-links > a[aria-current="page"]::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 12px; border-radius: 50%; background: var(--orange); vertical-align: 0.12em; }
+  .bar.is-open { background: var(--white); color: var(--ink); --btn-bg: var(--ink); --btn-fg: var(--white); }
+  .bar.is-open .bar-menu { background: rgb(25 28 31 / 0.07); }
+
+  .band:not(.hero) { padding-block: 64px; }
+  .page > .wrap:last-child { padding-bottom: 64px; }
   .hero { align-items: stretch; min-height: 0; }
   .hero-copy { justify-items: start; text-align: left; }
   .hero-copy .actions { justify-content: flex-start; }
@@ -391,9 +412,10 @@ html:not(.js) .tabs { display: none; }
   .film-controls { right: 10px; bottom: 10px; }
   .film-btn { width: 40px; height: 40px; }
 
-  .tiles, .duo, .feature, .detail-grid, .method, .about-grid, .certs, .foot-grid { grid-template-columns: 1fr; }
-  .tile, .project-tiles .tile { min-height: 280px; padding: 26px; }
-  .tile-tall { min-height: 320px; }
+  .tiles, .duo, .feature, .detail-grid, .method, .about-grid, .certs { grid-template-columns: 1fr; }
+  /* Cards hug their content on a phone: with no pictures, a fixed height only leaves an empty middle. */
+  .tile, .project-tiles .tile, .tile-tall { min-height: 0; padding: 26px; }
+  .tile-title { margin-top: 32px; }
   .go { top: 20px; right: 20px; }
   .tabs { margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
 
@@ -415,5 +437,9 @@ html:not(.js) .tabs { display: none; }
   .contact-card dl div { flex-direction: column; gap: 0; }
   .contact-card dd { text-align: left; }
   .contact-card .button { flex: 1; }
-  .foot-grid { gap: 32px; }
+  .foot { padding-block: 56px 32px; }
+  .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
+  .foot-grid > :first-child { grid-column: 1 / -1; }
+  .foot-copy { margin-top: 40px; }
+  .chat-log { min-height: 200px; }
 }

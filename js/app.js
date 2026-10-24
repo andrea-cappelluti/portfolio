@@ -24,6 +24,7 @@ function show(path, { y = 0, focus = false } = {}) {
     else a.removeAttribute('aria-current');
   });
 
+  setMenu(false);
   revealIn(view);
   scrollTo({ top: y, behavior: 'instant' });
   syncBar();
@@ -92,6 +93,29 @@ function syncBar() {
   bar.classList.toggle('is-dark', Boolean(under?.closest('.band-dark')));
 }
 
+// ---------- phone menu: the bar's links open as a full-screen sheet ----------
+const menuButton = document.querySelector('.bar-menu');
+function setMenu(open) {
+  bar.classList.toggle('is-open', open);
+  document.documentElement.classList.toggle('menu-open', open);
+  menuButton.setAttribute('aria-expanded', String(open));
+  menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+
+function initMenu() {
+  menuButton.addEventListener('click', () => {
+    const open = !bar.classList.contains('is-open');
+    setMenu(open);
+    if (open) bar.querySelector('.bar-links a').focus();
+  });
+  // Links to the page already shown don't go through show(), so close on any bar link.
+  bar.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+  addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && bar.classList.contains('is-open')) { setMenu(false); menuButton.focus(); }
+  });
+  matchMedia('(min-width: 840px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
+}
+
 // ---------- hero film: muted autoplay loop at 0.9x; buttons for pause and music ----------
 function initHeroFilm() {
   const video = document.getElementById('hero-video');
@@ -120,6 +144,7 @@ initShowUp(document.querySelector('.model'));
 initChat(document.querySelector('.chat'));
 initFilter();
 initHeroFilm();
+initMenu();
 addEventListener('scroll', syncBar, { passive: true });
 addEventListener('resize', syncBar);
 initRouter();
