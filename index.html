@@ -71,7 +71,7 @@
         <div class="wrap">
           <div class="band-head">
             <h2 class="h2" data-reveal>Agents, data platforms and forecasts</h2>
-            <p class="lead muted" data-reveal style="--i:1">Two theses, a mobility platform for Milan, a multi-agent system and four other projects, from university to production.</p>
+            <p class="lead muted" data-reveal style="--i:1">Two theses, a mobility platform for Milan, a multi-agent system, a voice agent for the Mac and three other projects, from university to production.</p>
           </div>
           <ul class="tiles" aria-label="Selected projects">
             <li data-reveal><a class="tile" href="/projects/mobility-lens">
@@ -99,7 +99,7 @@
               <span class="go" aria-hidden="true">→</span>
             </a></li>
           </ul>
-          <div class="band-cta" data-reveal><a class="button button-ink" href="/projects">All 7 projects</a></div>
+          <div class="band-cta" data-reveal><a class="button button-ink" href="/projects">All 8 projects</a></div>
         </div>
       </div>
 
@@ -237,15 +237,23 @@
       <div class="wrap">
         <div class="page-head">
           <h1 class="h1" tabindex="-1" data-reveal>Projects</h1>
-          <p class="lead muted" data-reveal style="--i:1">Two theses, work with companies and academic projects, from forecasting to multi-agent systems.</p>
+          <p class="lead muted" data-reveal style="--i:1">Two theses, work with companies, academic and personal projects, from forecasting to voice agents.</p>
         </div>
         <div class="tabs" role="group" aria-label="Filter projects" data-reveal style="--i:2">
           <button type="button" data-filter="all" aria-pressed="true">All</button>
           <button type="button" data-filter="thesis" aria-pressed="false">Theses</button>
           <button type="button" data-filter="industry" aria-pressed="false">With companies</button>
           <button type="button" data-filter="academic" aria-pressed="false">Academic</button>
+          <button type="button" data-filter="personal" aria-pressed="false">Personal</button>
         </div>
         <ul class="tiles project-tiles" aria-label="Projects">
+          <li data-kind="personal"><a class="tile" href="/projects/jev-voice-use">
+            <span class="eyebrow">Personal project · Oct 2026</span>
+            <span class="tile-title">Your Mac, by voice</span>
+            <span class="tile-text">Voice control for the whole Mac and for Chromium, in Italian and English. A decision model acts about 300 ms after the last word.</span>
+            <span class="chips"><span>Node.js</span><span>Swift</span><span>Jev</span></span>
+            <span class="go" aria-hidden="true">→</span>
+          </a></li>
           <li data-kind="industry"><a class="tile" href="/projects/mobility-lens">
             <span class="eyebrow">Basco&amp;T Consulting · Feb – Apr 2026</span>
             <span class="tile-title">MobilityLens, Milan</span>
@@ -300,6 +308,29 @@
     </section>
 
     <!-- ============ PROJECT DETAILS ============ -->
+    <article class="view page detail" data-route="/projects/jev-voice-use" data-title="Your Mac, by voice · Andrea Cappelluti">
+      <div class="wrap">
+        <div class="detail-head">
+          <a class="round back" href="/projects" aria-label="All projects">←</a>
+          <p class="eyebrow">Personal project · Oct 2026</p>
+          <h1 class="h1" tabindex="-1">Your Mac, by voice</h1>
+          <p class="lead muted">Talk to your Mac or to a real browser and it acts before you finish the sentence. Built on Moritz Kremb's open-source jev-voice-browser, which I extended with a macOS desktop mode, Italian and English commands and spoken arithmetic.</p>
+          <div class="actions"><a class="button button-ink" href="https://github.com/andrea-cappelluti/jev-voice-use" target="_blank" rel="noopener">View on GitHub <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <div class="detail-grid">
+          <ul class="group points">
+            <li>Speech streams in word by word: Apple's speech recogniser through a native Swift helper on the Mac, or the Web Speech API in browser mode.</li>
+            <li>After a 200 ms pause the app reads the screen (the macOS accessibility tree, or up to 100 page elements) and asks Jev, TypeSafe's System One model, about a dozen typed questions in one call.</li>
+            <li>Jev answers with probabilities, not text. Code then decides whether to act, wait, ask for confirmation, offer numbered choices or ignore side talk.</li>
+            <li>It opens and switches apps, clicks, types or dictates, searches, runs shortcuts, scrolls, sets the volume and does spoken sums in Calculator. Destructive actions need a spoken "confirm".</li>
+            <li>About 300 ms from the last word to the decision, about $0.0002 a call, and 170 of 170 integration tests passing (84 in Italian, 86 in English).</li>
+          </ul>
+          <div class="side"><p class="side-title">Stack</p><span class="chips"><span>Node.js</span><span>Swift</span><span>Jev (TypeSafe)</span><span>Playwright</span><span>Apple Speech</span><span>Express</span><span>WebSockets</span></span></div>
+        </div>
+        <a class="next" href="/projects/mobility-lens"><span>Next project</span>MobilityLens, Milan</a>
+      </div>
+    </article>
+
     <article class="view page detail" data-route="/projects/mobility-lens" data-title="MobilityLens · Andrea Cappelluti">
       <div class="wrap">
         <div class="detail-head">
@@ -421,7 +452,7 @@
           </ul>
           <div class="side"><p class="side-title">Stack</p><span class="chips"><span>SQL</span><span>SQLite</span><span>Orange Data Mining</span><span>Python</span><span>K-Means</span></span></div>
         </div>
-        <a class="next" href="/projects/mobility-lens"><span>Next project</span>MobilityLens, Milan</a>
+        <a class="next" href="/projects/jev-voice-use"><span>Next project</span>Your Mac, by voice</a>
       </div>
     </article>
 

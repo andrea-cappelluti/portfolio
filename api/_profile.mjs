@@ -12,7 +12,7 @@ export default `
 - Three roles in 2026, alongside a master's in data science: Data Science Intern at Basco&T Consulting (Feb - Apr 2026), Customer Insights Analyst at MSX International (Apr - Jul 2026), AI Engineer at Yellow Tech (Aug 2026 - now).
 - Education: BSc Economics and Big Data at Roma Tre University (2021 - 2024), MSc Data Science and Management at LUISS Guido Carli (2024 - 2026), Erasmus+ semester at TalTech in Tallinn (Sep 2025 - Feb 2026).
 - Two theses: BSc thesis on artificial intelligence in online platforms (2024), MSc thesis on forecasting check-in show-up at Rome Fiumicino (2026).
-- The site shows 7 projects: 2 theses, 3 with companies (MobilityLens, Reply project, Unieuro project) and 2 academic projects.
+- The site shows 8 projects: 2 theses, 3 with companies (MobilityLens, Reply project, Unieuro project), 2 academic projects and 1 personal project (Your Mac, by voice).
 - Open to conversations about AI engineering, data science and forecasting.
 
 ## Current role
@@ -41,6 +41,15 @@ export default `
 - Project page: /projects/mobility-lens.
 
 ## Projects
+
+### Your Mac, by voice - jev-voice-use (/projects/jev-voice-use)
+- Personal project, Oct 2026. Code: https://github.com/andrea-cappelluti/jev-voice-use
+- Voice control for the whole Mac (desktop mode, the default) or a Chromium window, in Italian and English: talk to the computer and it acts before you finish the sentence.
+- Built on Moritz Kremb's open-source jev-voice-browser (MIT licence). Andrea extended it with the macOS desktop mode (a native Swift helper), Italian and English commands in one session, and spoken arithmetic typed into Calculator.
+- How it works: speech streams in word by word (Apple's speech recogniser on the Mac, the Web Speech API in browser mode); after a 200 ms pause the app reads the screen (macOS accessibility tree, or up to 100 page elements) and sends one request to Jev, TypeSafe's System One model, with about a dozen typed questions; Jev returns probabilities, not text, and code decides whether to act, wait, ask for confirmation, offer numbered choices or ignore side talk.
+- Actions: open and switch apps, click buttons, menus and tabs, type or dictate text, search, keyboard shortcuts, scrolling, system volume. Destructive actions need a spoken "confirm".
+- Numbers from the project README: about 300 ms from the last word to the decision, Jev latency about 330 ms on average, about $0.0002 per call, 170 of 170 integration tests passing (84 Italian, 86 English).
+- Stack: Node.js, Swift, Jev (TypeSafe SDK), Playwright, Apple Speech framework, Express, WebSockets.
 
 ### MobilityLens, Milan (/projects/mobility-lens)
 - Basco&T Consulting, Data Science Intern, Feb - Apr 2026. Site: https://www.mobilitylens.com/
