@@ -79,6 +79,7 @@ ul, ol { padding: 0; list-style: none; }
 svg { display: block; max-width: 100%; }
 button, input { font: inherit; color: inherit; letter-spacing: inherit; }
 button { background: none; border: 0; padding: 0; cursor: pointer; }
+a, button, summary, input { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 a { color: inherit; }
 [hidden] { display: none !important; }
 ::selection { background: var(--orange); color: var(--ink); }
@@ -93,6 +94,7 @@ p { text-wrap: pretty; }
 .lead { font-family: var(--display); font-size: var(--t-lead); line-height: 1.33; letter-spacing: 0; }
 .small { font-size: var(--t-small); line-height: 1.57; }
 .muted { color: var(--fg-muted); }
+.nb { white-space: nowrap; }
 .eyebrow { font-size: var(--t-small); font-weight: 500; color: var(--fg-muted); }
 .wrap { width: min(100% - 2 * var(--gutter), 1120px); margin-inline: auto; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -159,6 +161,7 @@ main { padding-top: var(--bar-h); }
 .page-head { max-width: 820px; padding-bottom: clamp(40px, 5vw, 64px); }
 .page-head .eyebrow { margin-bottom: 16px; }
 .page-head .lead { margin-top: 20px; }
+.page-head .actions { margin-top: 24px; }
 .group-title { margin: 56px 0 16px; font-size: var(--t-h3); letter-spacing: -0.01em; }
 .page-head + .group-title { margin-top: 0; }
 
@@ -192,6 +195,12 @@ main { padding-top: var(--bar-h); }
 .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: clamp(40px, 5vw, 64px); }
 .tile { position: relative; display: flex; flex-direction: column; gap: 12px; height: 100%; min-height: 336px; padding: 32px; border-radius: var(--r-tile); background: var(--tile); text-decoration: none; transition: transform 300ms var(--ease), background-color 300ms var(--ease); }
 .tile .eyebrow, .tile-title { padding-right: 60px; }
+.tile-art { flex: none; width: 240px; max-width: 100%; height: 96px; margin-top: 12px; color: var(--fg-muted); }
+.art-sprite { position: absolute; width: 0; height: 0; }
+.art-line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.art-accent { fill: none; stroke: var(--orange); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.art-fill { fill: currentColor; opacity: 0.45; }
+.art-accent-fill { fill: var(--orange); }
 .tile-title { margin-top: auto; font-family: var(--display); font-size: var(--t-h3); font-weight: 500; line-height: 1.19; letter-spacing: -0.01em; }
 .tile-text { max-width: 42ch; color: var(--fg-2); }
 .tile .chips { margin-top: 8px; }
@@ -226,8 +235,8 @@ main { padding-top: var(--bar-h); }
 .item[open] { background: var(--white); }
 .item summary { display: flex; align-items: center; gap: 16px; padding: 14px 16px; border-radius: var(--r-widget); list-style: none; cursor: pointer; transition: background-color 200ms var(--ease); }
 .item summary::-webkit-details-marker { display: none; }
-.item summary::after { content: ""; flex: none; width: 9px; height: 9px; margin: 0 4px 4px 4px; border: solid var(--caption); border-width: 0 2px 2px 0; transform: rotate(45deg); transition: transform 300ms var(--ease), margin 300ms var(--ease); }
-.item[open] summary::after { transform: rotate(-135deg); margin-bottom: -4px; }
+.item summary::after { content: ""; flex: none; width: 9px; height: 9px; margin-inline: 4px; border: solid var(--caption); border-width: 0 2px 2px 0; transform: translateY(-2px) rotate(45deg); transition: transform 300ms var(--ease); }
+.item[open] summary::after { transform: translateY(2px) rotate(-135deg); }
 @media (hover: hover) and (pointer: fine) { .item:not([open]) summary:hover { background: var(--grey-2); } }
 .item .ico { width: 48px; height: 48px; background: var(--white); font-size: 0.875rem; }
 .item[open] .ico:not(.ico-accent) { background: var(--grey-2); }
@@ -373,13 +382,28 @@ html:not(.js) .tabs { display: none; }
 /* ---------- desktop: centred heads, as on Revolut from 840px ---------- */
 @media (min-width: 840px) {
   .band-head, .page-head { margin-inline: auto; text-align: center; }
-  .band-head .actions, .band-cta, .tabs { justify-content: center; }
+  .band-head .actions, .page-head .actions, .band-cta, .tabs { justify-content: center; }
 }
 
 /* ---------- tablet ---------- */
 @media (max-width: 1000px) {
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .certs { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- touch and phone: controls are at least 44px tall, with feedback on press ---------- */
+@media (max-width: 839px), (pointer: coarse) {
+  .button-sm, .tabs button, .chat-starters button { min-height: 44px; }
+  .bar-menu { width: 44px; height: 44px; }
+  .bar-mark { padding-block: 9px; }
+  .foot nav { gap: 0; }
+  .foot nav a { padding-block: 10px; }
+  .foot-head { margin-bottom: 6px; }
+  .contact-card dd a { display: inline-block; padding-block: 12px; margin-block: -12px; }
+  .link-go { padding-block: 12px; margin-block: -12px; }
+  .model-share input { height: 44px; }
+  .tabs button:active, .chat-starters button:active { transform: scale(0.97); }
+  .foot nav a:active, .link-go:active { opacity: 0.6; }
 }
 
 /* ---------- phone ---------- */
@@ -410,14 +434,15 @@ html:not(.js) .tabs { display: none; }
   .hero-copy .button { flex: 1; }
   .hero-film { align-self: center; border-width: 2px; border-radius: 18px; }
   .film-controls { right: 10px; bottom: 10px; }
-  .film-btn { width: 40px; height: 40px; }
 
   .tiles, .duo, .feature, .detail-grid, .method, .about-grid, .certs { grid-template-columns: 1fr; }
-  /* Cards hug their content on a phone: with no pictures, a fixed height only leaves an empty middle. */
+  /* Cards hug their content on a phone: a fixed height only leaves an empty middle. */
   .tile, .project-tiles .tile, .tile-tall { min-height: 0; padding: 26px; }
-  .tile-title { margin-top: 32px; }
+  .tile-title { margin-top: 32px; padding-right: 0; }
   .go { top: 20px; right: 20px; }
-  .tabs { margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
+  /* Filters wrap: a sideways scroll hides the ones past the edge. */
+  .tabs { flex-wrap: wrap; overflow: visible; }
+  .tabs button { padding-inline: 18px; }
 
   .item summary { gap: 12px; padding: 12px; }
   .item .ico { width: 44px; height: 44px; }
@@ -430,6 +455,7 @@ html:not(.js) .tabs { display: none; }
   .item-body { padding: 4px 16px 24px; }
   .grades { grid-template-columns: 1fr; }
 
+  .detail-head .h1 { font-size: 2.125rem; line-height: 1.08; }
   .detail-grid { gap: 32px; }
   .stats div { padding: 18px; }
   .stats dt { white-space: normal; }
@@ -442,4 +468,17 @@ html:not(.js) .tabs { display: none; }
   .foot-grid > :first-child { grid-column: 1 / -1; }
   .foot-copy { margin-top: 40px; }
   .chat-log { min-height: 200px; }
+}
+
+/* ---------- narrow phone: flights, slider and chart fit one screen, so a tap shows its effect ---------- */
+@media (max-width: 520px) {
+  .model-flights { grid-template-columns: 1fr 1fr; }
+  .flight { align-content: start; padding: 12px 14px; }
+}
+
+@media (max-width: 380px) {
+  .h1 { font-size: 2.125rem; line-height: 1.08; }
+  .stats div { padding: 16px 14px; }
+  .stats dt { font-size: 1.5rem; white-space: nowrap; }
+  .bar .button-sm { padding-inline: 14px; }
 }

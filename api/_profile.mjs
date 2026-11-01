@@ -12,7 +12,7 @@ export default `
 - Three roles in 2026, alongside a master's in data science: Data Science Intern at Basco&T Consulting (Feb - Apr 2026), Customer Insights Analyst at MSX International (Apr - Jul 2026), AI Engineer at Yellow Tech (Aug 2026 - now).
 - Education: BSc Economics and Big Data at Roma Tre University (2021 - 2024), MSc Data Science and Management at LUISS Guido Carli (2024 - 2026), Erasmus+ semester at TalTech in Tallinn (Sep 2025 - Feb 2026).
 - Two theses: BSc thesis on artificial intelligence in online platforms (2024), MSc thesis on forecasting check-in show-up at Rome Fiumicino (2026).
-- The site shows 8 projects: 2 theses, 3 with companies (MobilityLens, Reply project, Unieuro project), 2 academic projects and 1 open-source project (Computer and browser use with Jev).
+- The site shows 7 projects: the MSc thesis, 3 with companies (MobilityLens, Reply project, Unieuro project), 2 academic projects and 1 open-source project (Computer and browser use with Jev).
 - Open to conversations about AI engineering, data science and forecasting.
 
 ## Current role
@@ -59,17 +59,11 @@ export default `
 - Andrea built a RAG system that writes personalised real-estate evaluations, with public transport information and composite neighbourhood indicators.
 - Stack: Python, SQL, Supabase, RAG, LLM APIs, Power BI.
 
-### MSc thesis: When passengers show up (/thesis)
+### MSc thesis: Check-in demand forecasting at Rome Fiumicino (/thesis)
 - Forecasting passenger check-in show-up at Rome Fiumicino, from one hour to one week ahead. LUISS, 2026. Error 29-33% lower than the seasonal baseline.
 - Stack: LightGBM, TimesFM, AWS SageMaker. Full details under "Thesis".
 
-### AI in online platforms - BSc thesis (/projects/bsc-thesis)
-- Roma Tre University, 2024. Studies how online platforms implement artificial intelligence, and what that brings: impacts, opportunities and challenges.
-- Title: Implementation of Artificial Intelligence in Online Platforms: Impacts, Opportunities and Challenges.
-- Subject: Economics of Digital Markets. Advisor: Eleonora Pierucci. Degree: BSc Economics and Big Data, 102/110.
-- Topics: artificial intelligence, online platforms, digital markets, platform economics.
-
-### Questions in, charts out - multi-agent analytics (/projects/multi-agent-analytics)
+### Multi-agent analytics on public administrations data (/projects/multi-agent-analytics)
 - Reply project, Mar - Apr 2025 (the CV lists it under other curricular activities). A multi-agent system that analyses public datasets from plain-language questions: self-service civic analytics for everyone.
 - Turns natural-language questions into automated data analysis and visualisations, using GPT-4.1, Python and Streamlit.
 - Uses OpenAI's Agents SDK and LlamaIndex to interpret the question, pick the right public dataset, and generate and run Python code (pandas, matplotlib).
@@ -84,7 +78,7 @@ export default `
 - Delivered the forecasts in interactive Power BI dashboards for KPIs and scenario planning.
 - Stack: Python, XGBoost, scikit-learn, pandas, Power BI.
 
-### Energy use, predicted - SDG7 (/projects/sdg7-energy)
+### SDG7 energy consumption analysis (/projects/sdg7-energy)
 - Academic project, Mar - May 2024. Data on renewables, CO2 and access to electricity for UN Sustainable Development Goal 7, brought together to explain and predict energy use per person.
 - Aggregated and cleaned World Bank, IEA and UN data, with imputation and scaling.
 - Time-series and geospatial visuals, plus a correlation analysis across energy indicators.
@@ -92,7 +86,7 @@ export default `
 - Interactive dashboards for policy reading.
 - Stack: Python, pandas, scikit-learn, Random Forest, Seaborn, Tableau.
 
-### What makes a show popular (/projects/tv-popularity)
+### TV and movie popularity analysis (/projects/tv-popularity)
 - Academic project, Jan - Mar 2024. A Kaggle dataset of TV series and movies, analysed to find what drives popularity and ratings.
 - SQL on SQLite for extraction and exploratory analysis.
 - K-Means clustering and association rules to group titles and find patterns.
@@ -102,7 +96,7 @@ export default `
 
 ## Thesis
 
-- MSc thesis at LUISS Guido Carli, 2026, page /thesis. Site headline: "When passengers show up".
+- MSc thesis at LUISS Guido Carli, 2026, page /thesis. Site headline: "Check-in demand forecasting at Rome Fiumicino". Code: https://github.com/andrea-cappelluti/thesis-project-check-in-forecast
 - CV title: Forecasting Passenger Check-in Show-up Curves at Rome Fiumicino Airport: A Machine Learning Approach.
 - Subject: machine learning. Advisor Giuseppe F. Italiano, co-advisor Vincenzo Lomonaco.
 - Goal: forecast how many passengers reach the check-in desks at Rome Fiumicino, quarter hour by quarter hour, so the airport can staff the desks ahead.
@@ -111,7 +105,7 @@ export default `
 - Features are leakage-free: a show-up kernel (the typical arrival pattern before a departure) is convolved with the flight schedule.
 - A multi-horizon LightGBM model on those features cut error by 29-33% against the seasonal baseline, statistically significant on every setup. The home page highlights -33% error vs. the seasonal baseline.
 - Benchmarked against: XGBoost and CatBoost; TiDE and Temporal Fusion Transformer, trained on AWS SageMaker GPUs; TimesFM 3.0, a time-series foundation model fine-tuned with LoRA.
-- The thesis page has an interactive in-browser model, "Build a morning at the desks": switch flights on and off and set the share of passengers using a desk instead of checking in online. It uses illustrative curves that show the idea, not Fiumicino data, and assumes two minutes per passenger per desk.
+- The thesis page has an interactive in-browser model, "Interactive show-up model": switch flights on and off and set the share of passengers using a desk instead of checking in online. It uses illustrative curves that show the idea, not Fiumicino data, and assumes two minutes per passenger per desk.
 
 ## Education
 
