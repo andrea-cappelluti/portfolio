@@ -211,9 +211,6 @@ main { padding-top: var(--bar-h); }
   .band-dark .tile:hover { background: var(--d-grouped); }
   .tile:hover .go { background: var(--orange); color: var(--ink); transform: translateX(2px); }
 }
-.duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.tile-tall { min-height: 420px; }
-.tile-tall .chips { margin-top: 4px; }
 
 /* ---------- home feature (dark band) ---------- */
 .feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
@@ -436,9 +433,9 @@ html:not(.js) .tabs { display: none; }
   .hero-film { align-self: center; border-width: 2px; border-radius: 18px; }
   .film-controls { right: 10px; bottom: 10px; }
 
-  .tiles, .duo, .feature, .detail-grid, .method, .about-grid, .certs { grid-template-columns: 1fr; }
+  .tiles, .feature, .detail-grid, .method, .about-grid, .certs { grid-template-columns: 1fr; }
   /* Cards hug their content on a phone: a fixed height only leaves an empty middle. */
-  .tile, .project-tiles .tile, .tile-tall { min-height: 0; padding: 26px; }
+  .tile, .project-tiles .tile { min-height: 0; padding: 26px; }
   .tile-title { margin-top: 32px; padding-right: 0; }
   .go { top: 20px; right: 20px; }
   /* Filters wrap: a sideways scroll hides the ones past the edge. */
