@@ -1,7 +1,7 @@
 # Andrea Cappelluti — portfolio
 
-Static site with History API routing: one `index.html`, six pages shown one at a time
-(`/`, `/work`, `/projects`, `/thesis`, `/about`, `/ask`) plus one page per project (`/projects/mobility-lens`, `/projects/multi-agent-analytics`, …).
+Static site with History API routing: one `index.html`, seven pages shown one at a time
+(`/`, `/work`, `/projects`, `/thesis`, `/about`, `/contact`, `/ask`) plus one page per project (`/projects/mobility-lens`, `/projects/multi-agent-analytics`, …).
 Back/Forward restore the scroll position; deep links work. No build step; the only server code is the
 `/ask` chatbot's Vercel Function. Style: reverse-engineered
 from Revolut's site and app (light/dark bands, pill buttons, app-style list rows), with orange accents;
@@ -64,7 +64,7 @@ models fail the page asks visitors to email instead.
 The site currently has no pictures. Good places for them when they are ready:
 
 - Home: a real screenshot or portrait could replace the HTML phone in the hero.
-- About: a portrait above or beside the "Let's talk" card.
+- About: a portrait beside the facts card.
 - Project pages: one screenshot or visual per project under the title (16:10).
 
 Put files in `assets/` and reference them with absolute paths (`/assets/...`).

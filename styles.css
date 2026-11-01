@@ -327,13 +327,14 @@ html:not(.js) .tabs { display: none; }
 .about-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: start; }
 .bio { display: grid; gap: 1em; }
 .bio p { max-width: 60ch; font-size: 1.125rem; line-height: 1.6; color: var(--text-2); }
-.contact-card { display: grid; gap: 20px; padding: 32px; border-radius: var(--r-tile); background: var(--ink); scroll-margin-top: calc(var(--bar-h) + 24px); }
+.contact-card { display: grid; gap: 20px; max-width: 560px; margin-inline: auto; padding: 32px; border-radius: var(--r-tile); background: var(--ink); }
 .contact-card dl { display: grid; gap: 12px; }
 .contact-card dl div { display: flex; justify-content: space-between; gap: 16px; }
 .contact-card dt { color: var(--fg-muted); }
 .contact-card dd { text-align: right; font-weight: 500; overflow-wrap: anywhere; }
 .contact-card a { text-underline-offset: 0.2em; }
 .contact-card .actions { margin-top: 8px; }
+.contact-card .button { flex: 1; }
 .skill { display: grid; gap: 12px; padding: 20px 24px; border-radius: var(--r-widget); background: var(--white); }
 .skill-title { font-weight: 600; }
 .skill .chips span { background: var(--grey-1); }
@@ -462,7 +463,6 @@ html:not(.js) .tabs { display: none; }
   .contact-card { padding: 26px; }
   .contact-card dl div { flex-direction: column; gap: 0; }
   .contact-card dd { text-align: left; }
-  .contact-card .button { flex: 1; }
   .foot { padding-block: 56px 32px; }
   .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
   .foot-grid > :first-child { grid-column: 1 / -1; }

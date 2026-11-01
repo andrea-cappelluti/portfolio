@@ -5,7 +5,7 @@ export default `
 - AI engineer and data scientist, from Rome, based in Milan, Italy.
 - AI Engineer at Yellow Tech in Milan since August 2026.
 - Builds AI agents; his MSc thesis forecasts passenger check-ins at Rome Fiumicino airport.
-- Portfolio site pages: /work, /projects, /thesis, /about.
+- Portfolio site pages: /work, /projects, /thesis, /about, /contact.
 
 ## Summary
 
@@ -153,5 +153,5 @@ export default `
 - LinkedIn: https://www.linkedin.com/in/andrea-cappelluti-9b1a61282
 - CV: /CV_Andrea_Cappelluti.pdf
 - Based in Milan, Italy; from Rome.
-- Site pages: /work (work and study), /projects (all projects), /thesis (MSc thesis), /about (bio, skills, certificates, contact; contact card at /about#contact).
+- Site pages: /work (work and study), /projects (all projects), /thesis (MSc thesis), /about (bio, skills, certificates), /contact (email, LinkedIn, CV).
 `;
