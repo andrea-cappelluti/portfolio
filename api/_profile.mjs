@@ -132,6 +132,7 @@ export default `
 ## Certificates
 
 - Anthropic: Claude Certified Architect - Foundations (2026); Introduction to Model Context Protocol; AI Fluency: Framework & Foundations.
+- Salesforce: Salesforce Certified Agentforce Specialist (earned November 12, 2026).
 - Codecademy: How to Analyze Business Metrics with SQL; Learn Statistics with R; BI Dashboards with Power BI; BI Dashboards with Tableau; Learn Prompt Engineering.
 - LUISS Guido Carli: AI Literacy Digital Certificate.
 - StudySection (CV: StudySection E-Learning): Python (Advanced).
