@@ -35,7 +35,9 @@ allow the free models (their providers may log prompts).
 `api/chat.mjs` keeps the OpenRouter key on the server, prepends a system prompt built from
 `api/_profile.mjs`, and sends `models: [nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3.5-super-vl:free]`,
 so OpenRouter falls back to the second model on errors, rate limits or downtime. Reasoning is off for speed;
-only the last 11 messages, 1000 characters each, are sent, and Markdown is stripped from replies. The system
+only the last 11 messages, 1000 characters each, are sent. The function streams the answer back as plain
+text once the first words arrive (before that, a failure is still a 502), and the page shows it as it grows,
+stripping any Markdown. The system
 prompt carries today's date (so durations are computed, not guessed) and asks for short, answer-first replies
 that end with the relevant page; `js/chat.js` turns site paths, web addresses and the email into links. When
 both models fail the page asks visitors to email instead.

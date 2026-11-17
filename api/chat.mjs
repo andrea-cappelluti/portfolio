@@ -1,5 +1,6 @@
 // POST /api/chat: the /ask page's assistant. Keeps the OpenRouter key on the server, adds Andrea's
 // profile as system prompt, and lets OpenRouter fall back to the second free model on errors or rate limits.
+// The answer is streamed back as plain text, so the page can show it while it is being written.
 import profile from './_profile.mjs';
 
 // Inkling free is limited to agentic harnesses on OpenRouter (403 from a website), so it can't be used here.
@@ -31,6 +32,23 @@ Profile
 
 ${profile}`;
 
+// The text pieces of an OpenRouter stream (server-sent events, one JSON chunk per "data:" line).
+async function* textDeltas(body) {
+  let buffer = '';
+  for await (const part of body.pipeThrough(new TextDecoderStream())) {
+    const lines = (buffer + part).split('\n');
+    buffer = lines.pop();
+    for (const line of lines) {
+      if (!line.startsWith('data: ') || line.startsWith('data: [DONE]')) continue;
+      let chunk;
+      try { chunk = JSON.parse(line.slice(6)); } catch { continue; }
+      if (chunk.error) console.error('OpenRouter stream error', JSON.stringify(chunk.error));
+      const text = chunk.choices?.[0]?.delta?.content;
+      if (text) yield text;
+    }
+  }
+}
+
 export async function POST(request) {
   const body = await request.json().catch(() => null);
   const messages = (Array.isArray(body?.messages) ? body.messages : [])
@@ -54,15 +72,29 @@ export async function POST(request) {
         max_tokens: 600,
         temperature: 0.3,
         reasoning: { effort: 'none' },
+        stream: true,
       }),
-      signal: AbortSignal.timeout(25_000),
+      signal: AbortSignal.timeout(40_000),
     });
-    // OpenRouter can also answer 200 with only an `error` body, so check for content, not just the status.
-    const data = await res.json().catch(() => null);
-    // The page shows plain text, and the models still slip into Markdown now and then.
-    const reply = data?.choices?.[0]?.message?.content?.replace(/\*\*|`/g, '').replace(/^#+\s+/gm, '').replace(/^[-*] /gm, '• ').trim();
-    if (reply) return Response.json({ reply });
-    console.error('OpenRouter failed', res.status, JSON.stringify(data?.error ?? data));
+    // OpenRouter can answer 200 and still carry only an error, so wait for the first words before
+    // committing to a stream: until then a failure can still be reported as a 502.
+    const deltas = res.ok ? textDeltas(res.body) : null;
+    const first = await deltas?.next();
+    if (first && !first.done) {
+      const encoder = new TextEncoder();
+      const stream = new ReadableStream({
+        start(controller) { controller.enqueue(encoder.encode(first.value)); },
+        async pull(controller) {
+          // A failure mid-answer just ends it: the visitor keeps what has arrived.
+          const next = await deltas.next().catch((err) => { console.error('OpenRouter stream broke', err); return { done: true }; });
+          if (next.done) controller.close();
+          else controller.enqueue(encoder.encode(next.value));
+        },
+        cancel() { deltas.return(); },
+      });
+      return new Response(stream, { headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' } });
+    }
+    console.error('OpenRouter failed', res.status, res.ok ? 'no content' : await res.text().catch(() => ''));
   } catch (err) {
     console.error('OpenRouter unreachable', err);
   }
