@@ -5,6 +5,7 @@ export default `
 - AI engineer and data scientist, from Rome, based in Milan, Italy.
 - AI Engineer at Yellow Tech in Milan since August 2026.
 - Builds AI agents; his MSc thesis forecasts passenger check-ins at Rome Fiumicino airport.
+- Early in his career: he finished his master's in 2026 and has worked full time as an AI engineer since August 2026, after an internship and a short analyst role earlier in 2026.
 - Portfolio site pages: /work, /projects, /thesis, /about, /contact.
 
 ## Summary
@@ -13,6 +14,7 @@ export default `
 - Education: BSc Economics and Big Data at Roma Tre University (2021 - 2024), MSc Data Science and Management at LUISS Guido Carli (2024 - 2026), Erasmus+ semester at TalTech in Tallinn (Sep 2025 - Feb 2026).
 - Two theses: BSc thesis on artificial intelligence in online platforms (2024), MSc thesis on forecasting check-in show-up at Rome Fiumicino (2026).
 - The site shows 7 projects: the MSc thesis, 3 with companies (MobilityLens, Reply project, Unieuro project), 2 academic projects and 1 open-source project (Computer and browser use with Jev).
+- Work built on language models (LLMs): the OCR + LLM document pipelines at Yellow Tech, the MobilityLens RAG system (LLM APIs) and the multi-agent analytics project (GPT-4.1). The Jev project uses TypeSafe's System One decision model, which returns probabilities rather than text. Timestral and TimesFM, used for the thesis data, are time-series foundation models, not language models.
 - Open to conversations about AI engineering, data science and forecasting.
 
 ## Current role
@@ -60,8 +62,8 @@ export default `
 - Stack: Python, SQL, Supabase, RAG, LLM APIs, Power BI.
 
 ### MSc thesis: Check-in demand forecasting at Rome Fiumicino (/thesis)
-- Forecasting passenger check-in show-up at Rome Fiumicino, from one hour to one week ahead. LUISS, 2026. Error 29-33% lower than the seasonal baseline.
-- Stack: LightGBM, TimesFM, AWS SageMaker. Full details under "Thesis".
+- Forecasting passenger check-in show-up at Rome Fiumicino, from one hour to one week ahead. LUISS, 2026. The thesis model (LightGBM) has 29-33% less error than the seasonal baseline; a follow-up fine-tune of Mistral AI's Timestral reaches 39% less three hours ahead.
+- Stack: LightGBM, Timestral, TimesFM, LoRA, AWS SageMaker. Full details under "Thesis".
 
 ### Multi-agent analytics on public administrations data (/projects/multi-agent-analytics)
 - Reply project, Mar - Apr 2025 (the CV lists it under other curricular activities). A multi-agent system that analyses public datasets from plain-language questions: self-service civic analytics for everyone.
@@ -104,7 +106,19 @@ export default `
 - Check-ins are counted in bins from 5 to 30 minutes and forecast from one hour to one week ahead.
 - Features are leakage-free: a show-up kernel (the typical arrival pattern before a departure) is convolved with the flight schedule.
 - A multi-horizon LightGBM model on those features cut error by 29-33% against the seasonal baseline, statistically significant on every setup. The home page highlights -33% error vs. the seasonal baseline.
-- Benchmarked against: XGBoost and CatBoost; TiDE and Temporal Fusion Transformer, trained on AWS SageMaker GPUs; TimesFM 3.0, a time-series foundation model fine-tuned with LoRA.
+- Benchmarked against: XGBoost and CatBoost; TiDE and Temporal Fusion Transformer, trained on AWS SageMaker GPUs; TimesFM 3.0 and Timestral-209M, time-series foundation models, zero-shot and fine-tuned with LoRA.
+
+### Follow-up after the thesis: fine-tuned Timestral (Andrea's best model so far)
+- In November 2026, after the thesis, Andrea fine-tuned Timestral-209M, Mistral AI's time-series foundation model, on the same Fiumicino data. It is a side experiment, not part of the thesis document.
+- Method: LoRA (rank 16) on the attention layers, about 1% of the model's weights (2.2M of 211.5M), trained on a MacBook in about an hour per setup, with four weeks of history as context.
+- One covariate: the passengers expected at the desks according to the flight schedule (scheduled seats spread over the hours before each departure with the show-up kernel). It is known in advance and is the same signal the thesis LightGBM model uses.
+- Metric: WAPE, the total forecast miss as a share of all passengers; lower is better. Test set: November 2025 to January 2026.
+- Three hours ahead, 15-minute bins (WAPE): Timestral LoRA + flight schedule 11.7%; TimesFM 3.0 LoRA 12.1%; Timestral zero-shot 12.4%; LightGBM thesis model 12.9%; TiDE 14.7%; seasonal baseline 19.3%.
+- One week ahead, 30-minute bins (WAPE): Timestral LoRA + flight schedule 11.9%; LightGBM thesis model 12.1%; TimesFM 3.0 LoRA 12.8%; Timestral zero-shot 15.3%; TiDE 16.4%; seasonal baseline 17.8%.
+- So the fine-tuned Timestral has the lowest error in every setup: 39% less than the seasonal baseline three hours ahead and 33% less one week ahead. Three hours ahead it also explains 93% of the variance (R-squared 0.93), with a mean error of about 2.4 passengers per minute.
+- Against the thesis LightGBM model it is 9% better three hours ahead (statistically significant) and 1% better one week ahead (a statistical tie).
+- The covariate matters most on the weekly horizon: without it the fine-tuned Timestral scores 13.6% there, worse than the thesis model.
+- Honest limits: one training run per setup (a single seed), and evaluated only on data up to June 2026.
 - The thesis page has an interactive in-browser model, "Interactive show-up model": switch flights on and off and set the share of passengers using a desk instead of checking in online. It uses illustrative curves that show the idea, not Fiumicino data, and assumes two minutes per passenger per desk.
 
 ## Education
@@ -125,7 +139,7 @@ export default `
 ## Skills
 
 - AI engineering: AI agents and multi-agent systems, LLM APIs, Model Context Protocol (MCP), RAG, OCR + LLM extraction, prompt engineering, Claude Code, Gemini CLI, Google AI Studio. The CV also lists System One decision models.
-- Machine learning: scikit-learn, LightGBM, XGBoost, CatBoost, PyTorch, TensorFlow, Darts, Optuna, time-series forecasting, LoRA / PEFT fine-tuning.
+- Machine learning: scikit-learn, LightGBM, XGBoost, CatBoost, PyTorch, TensorFlow, Darts, Optuna, time-series forecasting, LoRA / PEFT fine-tuning (applied to the TimesFM and Timestral foundation models).
 - Data and BI: Python, R, SQL, Stata, DuckDB, Power BI, Tableau, Orange Data Mining, MS Office.
 - Cloud and deployment: Docker, Git, Railway, Vercel, Supabase, AWS SageMaker (GPU training).
 

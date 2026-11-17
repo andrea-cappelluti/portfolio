@@ -16,6 +16,7 @@ function show(path, { y = 0, focus = false } = {}) {
   }
   views.forEach((v) => v.classList.toggle('is-active', v === view));
   document.title = view.dataset.title;
+  if (!view.contains(video)) video?.pause(); // the film (and its music) stops when you leave the home page
 
   // Project pages keep "Projects" highlighted in the bar.
   const section = '/' + (view.dataset.route.split('/')[1] ?? '');
@@ -79,10 +80,15 @@ function revealIn(view) {
 // ---------- projects filter: pill tabs show one kind of project ----------
 function initFilter() {
   const tabs = [...document.querySelectorAll('[data-filter]')];
-  const cards = [...document.querySelectorAll('.project-tiles > li')];
+  const list = document.querySelector('.project-tiles');
+  const cards = [...list.children];
   tabs.forEach((tab) => tab.addEventListener('click', () => {
     tabs.forEach((t) => t.setAttribute('aria-pressed', String(t === tab)));
     cards.forEach((c) => { c.hidden = tab.dataset.filter !== 'all' && c.dataset.kind !== tab.dataset.filter; });
+    // Restart the cards' entrance so the new selection visibly settles in.
+    list.classList.remove('is-filtered');
+    void list.offsetWidth;
+    list.classList.add('is-filtered');
   }));
 }
 
@@ -116,22 +122,43 @@ function initMenu() {
   matchMedia('(min-width: 840px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
 }
 
-// ---------- hero film: muted autoplay loop at 0.9x; buttons for pause and music ----------
+// ---------- hero film: plays once, muted, at 0.9x; seek bar, play / pause / replay and music ----------
+const video = document.getElementById('hero-video');
 function initHeroFilm() {
-  const video = document.getElementById('hero-video');
   const sound = document.querySelector('.sound');
   const playpause = document.querySelector('.playpause');
-  if (!video || !sound || !playpause) return;
+  const seek = document.querySelector('.film-seek');
+  const time = document.querySelector('.film-time');
+  if (!video || !sound || !playpause || !seek || !time) return;
   video.defaultPlaybackRate = video.playbackRate = 0.9;
+  const clock = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+
   const syncPlay = () => {
-    playpause.setAttribute('aria-pressed', String(video.paused));
-    playpause.setAttribute('aria-label', video.paused ? 'Play video' : 'Pause video');
+    const state = video.ended ? 'ended' : video.paused ? 'paused' : 'playing';
+    playpause.dataset.state = state;
+    playpause.setAttribute('aria-label', { ended: 'Replay video', paused: 'Play video', playing: 'Pause video' }[state]);
   };
-  video.addEventListener('play', syncPlay);
-  video.addEventListener('pause', syncPlay);
+  // The bar follows the video on every frame while it plays, so it glides instead of stepping.
+  let frame = 0;
+  const syncTime = () => {
+    const total = video.duration || Number(seek.max);
+    seek.max = total;
+    seek.value = video.currentTime;
+    seek.style.setProperty('--played', `${(video.currentTime / total) * 100}%`);
+    time.textContent = `${clock(video.currentTime)} / ${clock(total)}`;
+    cancelAnimationFrame(frame);
+    if (!video.paused) frame = requestAnimationFrame(syncTime);
+  };
+  ['play', 'pause', 'ended', 'seeked'].forEach((type) => video.addEventListener(type, syncPlay));
+  ['play', 'pause', 'seeking', 'timeupdate', 'loadedmetadata'].forEach((type) => video.addEventListener(type, syncTime));
   if (reduceMotion.matches) { video.removeAttribute('autoplay'); video.pause(); }
   syncPlay();
-  playpause.addEventListener('click', () => (video.paused ? video.play() : video.pause()));
+  syncTime();
+
+  const toggle = () => (video.paused ? video.play() : video.pause());
+  playpause.addEventListener('click', toggle);
+  video.addEventListener('click', toggle);
+  seek.addEventListener('input', () => { video.currentTime = Number(seek.value); });
   sound.addEventListener('click', () => {
     video.muted = !video.muted;
     sound.setAttribute('aria-pressed', String(!video.muted));

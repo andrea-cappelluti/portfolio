@@ -35,8 +35,10 @@ allow the free models (their providers may log prompts).
 `api/chat.mjs` keeps the OpenRouter key on the server, prepends a system prompt built from
 `api/_profile.mjs`, and sends `models: [nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3.5-super-vl:free]`,
 so OpenRouter falls back to the second model on errors, rate limits or downtime. Reasoning is off for speed;
-only the last 11 messages, 1000 characters each, are sent, and Markdown is stripped from replies. When both
-models fail the page asks visitors to email instead.
+only the last 11 messages, 1000 characters each, are sent, and Markdown is stripped from replies. The system
+prompt carries today's date (so durations are computed, not guessed) and asks for short, answer-first replies
+that end with the relevant page; `js/chat.js` turns site paths, web addresses and the email into links. When
+both models fail the page asks visitors to email instead.
 
 - Free models come and go: as of October 2026 `thinkingmachines/inkling:free` answers 403 outside agentic
   harnesses, and `nvidia/nemotron-3-super-120b-a12b:free` returns 404 from its provider. If the chat starts
@@ -53,7 +55,7 @@ models fail the page asks visitors to email instead.
 | --- | --- |
 | `index.html` | All content (readable without JavaScript) |
 | `styles.css` | Tokens (Revolut greys and dark surfaces, orange accent, General Sans + Inter) and layout |
-| `js/app.js` | Router (views, history, scroll restore), reveals, projects filter, bar colour over dark bands |
+| `js/app.js` | Router (views, history, scroll restore), reveals, projects filter, bar colour over dark bands, hero film player |
 | `js/showup.js` | The live show-up curve on the thesis page (illustrative model) |
 | `js/chat.js` | The `/ask` chat: conversation, starter questions, fallback message |
 | `api/chat.mjs` | Vercel Function behind the chat (OpenRouter call, limits, fallback) |
@@ -61,9 +63,11 @@ models fail the page asks visitors to email instead.
 
 ## Photos and video
 
-The site currently has no pictures. Good places for them when they are ready:
+The home hero plays `assets/hero/flow.mp4` (source in `hero-video/`, not deployed) once, muted, with its own
+controls: play / pause / replay, a seek bar and music on request. It stops when the visitor leaves the home page.
 
-- Home: a real screenshot or portrait could replace the HTML phone in the hero.
+The site has no photos yet. Good places for them when they are ready:
+
 - About: a portrait beside the facts card.
 - Project pages: one screenshot or visual per project under the title (16:10).
 

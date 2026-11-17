@@ -1,6 +1,20 @@
 // ---------- ask page: chat with the profile assistant (POST /api/chat, see api/chat.mjs) ----------
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
-const UNAVAILABLE ="I can't answer right now: the free AI models are busy or out of quota for today. Try again in a minute, or email Andrea at andreacappelluti7@gmail.com.";
+const UNAVAILABLE = "I can't answer right now: the free AI models are busy or out of quota for today. Try again in a minute, or email Andrea at andreacappelluti7@gmail.com.";
+// Web addresses, email addresses and this site's own pages become links; everything else stays text.
+const LINK = /(https?:\/\/[^\s)]*[^\s).,;:!?]|[\w.+-]+@[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}|(?<![\w/.])\/(?:work|projects(?:\/[\w-]+)?|thesis|about|contact|CV_Andrea_Cappelluti\.pdf)(?![\w/-]))/g;
+
+function fill(msg, text) {
+  msg.replaceChildren(...text.split(LINK).map((part, i) => {
+    if (i % 2 === 0) return part;
+    const a = document.createElement('a');
+    a.textContent = part;
+    a.href = part.includes('@') ? `mailto:${part}` : part;
+    if (part.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
+    if (part.endsWith('.pdf')) a.download = '';
+    return a;
+  }));
+}
 
 export function initChat(root) {
   if (!root) return;
@@ -24,11 +38,10 @@ export function initChat(root) {
     if (busy) return;
     busy = true;
     form.setAttribute('aria-busy', 'true');
-    starters.hidden = true;
     input.value = '';
     add('user', question);
-    const answer = add('bot', 'Thinking…');
-    answer.classList.add('is-waiting');
+    const answer = add('bot', '');
+    answer.innerHTML = '<span class="typing" role="img" aria-label="Thinking"><i></i><i></i><i></i></span>';
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
@@ -38,11 +51,11 @@ export function initChat(root) {
       const { reply } = await res.json();
       if (!res.ok || !reply) throw new Error(`chat ${res.status}`);
       history.push({ role: 'user', content: question }, { role: 'assistant', content: reply });
-      answer.textContent = reply;
+      fill(answer, reply);
     } catch {
-      answer.textContent = UNAVAILABLE;
+      fill(answer, UNAVAILABLE);
     }
-    answer.classList.remove('is-waiting');
+    form.scrollIntoView({ block: 'nearest', behavior: reduceMotion.matches ? 'instant' : 'smooth' });
     form.removeAttribute('aria-busy');
     busy = false;
   }
@@ -52,8 +65,12 @@ export function initChat(root) {
     const question = input.value.trim();
     if (question) ask(question);
   });
+  // A starter leaves once it has been asked; the others stay as follow-ups.
   starters.addEventListener('click', (e) => {
     const button = e.target.closest('button');
-    if (button) ask(button.textContent);
+    if (!button || busy) return;
+    ask(button.textContent);
+    button.remove();
+    starters.hidden = !starters.children.length;
   });
 }

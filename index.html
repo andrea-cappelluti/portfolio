@@ -105,16 +105,18 @@
           </div>
         </div>
 
-        <!-- The data-flow film (hero-video/): muted autoplay loop, music on request. -->
+        <!-- The data-flow film (hero-video/): plays once, muted; seek bar, replay and music on request. -->
         <figure class="hero-film">
-          <video id="hero-video" src="/assets/hero/flow.mp4" poster="/assets/hero/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="From raw data to AI: raw data becomes a clean table, then charts, machine-learning and deep-learning forecasts for Fiumicino, and a language model that powers an AI document platform."></video>
+          <video id="hero-video" src="/assets/hero/flow.mp4" poster="/assets/hero/poster.jpg" autoplay muted playsinline preload="metadata" aria-label="From raw data to AI: raw data becomes a clean table, then charts, machine-learning and deep-learning forecasts for Fiumicino, and a language model that powers an AI document platform."></video>
           <div class="film-controls">
-          <button class="film-btn playpause" type="button" aria-pressed="false" aria-label="Pause video">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="icon-pause" d="M8.5 6v12M15.5 6v12"/><path class="icon-play" d="M8 5.5v13l10.5-6.5z"/></svg>
-          </button>
-          <button class="film-btn sound" type="button" aria-pressed="false" aria-label="Play music">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="sound-cone" d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="sound-on" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="sound-off" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
-          </button>
+            <button class="film-btn playpause" type="button" data-state="playing" aria-label="Pause video">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path class="icon-pause" d="M8.5 6v12M15.5 6v12"/><path class="icon-play" d="M8 5.5v13l10.5-6.5z"/><path class="icon-replay" d="M5.5 12.5a6.5 6.5 0 1 0 2-5.2M5 4.5v3.5h3.5"/></svg>
+            </button>
+            <input class="film-seek" type="range" min="0" max="25" step="any" value="0" aria-label="Video position">
+            <span class="film-time" aria-hidden="true">0:00 / 0:25</span>
+            <button class="film-btn sound" type="button" aria-pressed="false" aria-label="Play music">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path class="sound-cone" d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="sound-on" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="sound-off" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+            </button>
           </div>
         </figure>
       </div>
@@ -163,12 +165,12 @@
         <div class="wrap feature">
           <div class="feature-copy">
             <h2 class="h2" data-reveal>Forecasts for the check-in desks</h2>
-            <p class="lead muted" data-reveal style="--i:1">29.5 million check-ins at Rome Fiumicino, modelled quarter hour by quarter hour. LightGBM cut the error by a third against the seasonal baseline.</p>
+            <p class="lead muted" data-reveal style="--i:1">29.5 million check-ins at Rome Fiumicino, modelled quarter hour by quarter hour. In the thesis, LightGBM cut the error by a third against the seasonal baseline. A fine-tuned Timestral that reads the flight schedule now cuts it by 39%.</p>
             <div class="actions" data-reveal style="--i:2"><a class="button button-ink" href="/thesis">Read about the thesis</a></div>
           </div>
           <div class="feature-visual" data-reveal style="--i:1">
-            <p class="feature-big">−33%</p>
-            <p class="small muted">error vs. seasonal baseline</p>
+            <p class="feature-big">−39%</p>
+            <p class="small muted">error vs. seasonal baseline, three hours ahead</p>
             <span class="spark" aria-hidden="true"><i style="--v:.18"></i><i style="--v:.3"></i><i style="--v:.52"></i><i style="--v:.8"></i><i class="is-peak" style="--v:1"></i><i style="--v:.86"></i><i style="--v:.7"></i><i style="--v:.62"></i><i style="--v:.55"></i><i style="--v:.5"></i><i style="--v:.38"></i><i style="--v:.24"></i><i style="--v:.12"></i></span>
           </div>
         </div>
@@ -305,8 +307,8 @@
             <span class="eyebrow">MSc thesis · LUISS · 2026</span>
             <svg class="tile-art" aria-hidden="true"><use href="#art-showup"/></svg>
             <span class="tile-title">Check-in demand forecasting at Rome Fiumicino</span>
-            <span class="tile-text">Forecasting check-in show-up at Rome Fiumicino, from one hour to one week ahead. −29–33% error vs. the seasonal baseline.</span>
-            <span class="chips"><span>LightGBM</span><span>TimesFM</span><span>SageMaker</span></span>
+            <span class="tile-text">Forecasting check-in show-up at Rome Fiumicino, from one hour to one week ahead. Up to 39% less error than the seasonal baseline.</span>
+            <span class="chips"><span>LightGBM</span><span>Timestral</span><span>LoRA</span><span>SageMaker</span></span>
             <span class="go" aria-hidden="true">→</span>
           </a></li>
           <li data-kind="industry"><a class="tile" href="/projects/multi-agent-analytics">
@@ -508,6 +510,38 @@
         </div>
       </div>
 
+      <div class="wrap results">
+        <div class="results-head" data-reveal>
+          <h2 class="h3">Which model forecasts best</h2>
+          <p>Forecast error on the test set, November 2025 to January 2026. The measure is WAPE: the total miss as a share of all passengers, so lower is better.</p>
+        </div>
+        <div class="results-grid">
+          <figure class="group board" data-reveal>
+            <figcaption>Three hours ahead, 15-minute bins</figcaption>
+            <ol>
+              <li class="is-best" style="--v:.1168"><span>Timestral, LoRA + flight schedule</span><b>11.7%</b><i></i></li>
+              <li style="--v:.1208"><span>TimesFM 3.0, LoRA</span><b>12.1%</b><i></i></li>
+              <li style="--v:.1236"><span>Timestral, zero-shot</span><b>12.4%</b><i></i></li>
+              <li style="--v:.1286"><span>LightGBM, the thesis model</span><b>12.9%</b><i></i></li>
+              <li style="--v:.1473"><span>TiDE</span><b>14.7%</b><i></i></li>
+              <li style="--v:.1930"><span>Seasonal baseline</span><b>19.3%</b><i></i></li>
+            </ol>
+          </figure>
+          <figure class="group board" data-reveal style="--i:1">
+            <figcaption>One week ahead, 30-minute bins</figcaption>
+            <ol>
+              <li class="is-best" style="--v:.1194"><span>Timestral, LoRA + flight schedule</span><b>11.9%</b><i></i></li>
+              <li style="--v:.1210"><span>LightGBM, the thesis model</span><b>12.1%</b><i></i></li>
+              <li style="--v:.1283"><span>TimesFM 3.0, LoRA</span><b>12.8%</b><i></i></li>
+              <li style="--v:.1526"><span>Timestral, zero-shot</span><b>15.3%</b><i></i></li>
+              <li style="--v:.1636"><span>TiDE</span><b>16.4%</b><i></i></li>
+              <li style="--v:.1777"><span>Seasonal baseline</span><b>17.8%</b><i></i></li>
+            </ol>
+          </figure>
+        </div>
+        <p class="results-note" data-reveal>Timestral-209M is Mistral AI's time-series foundation model. After the thesis I fine-tuned it with LoRA, training 1% of its weights on a laptop, and gave it one covariate: the passengers expected at the desks according to the flight schedule. It has the lowest error in every setup. Against the thesis model the gain is statistically significant three hours ahead and a tie one week ahead.</p>
+      </div>
+
       <div class="wrap method">
         <div data-reveal>
           <h2 class="h3">How it works</h2>
@@ -519,7 +553,7 @@
           <ul class="bullets">
             <li>XGBoost and CatBoost</li>
             <li>TiDE and Temporal Fusion Transformer, trained on AWS SageMaker GPUs</li>
-            <li>TimesFM 3.0, a time-series foundation model fine-tuned with LoRA</li>
+            <li>TimesFM 3.0 and Timestral-209M, time-series foundation models, zero-shot and fine-tuned with LoRA</li>
           </ul>
           <p class="small muted">Advisor Giuseppe F. Italiano, co-advisor Vincenzo Lomonaco. LUISS Guido Carli, 2026.</p>
         </div>
@@ -596,8 +630,9 @@
           </ol>
           <div class="chips chat-starters">
             <button type="button">What does Andrea do at Yellow Tech?</button>
-            <button type="button">What is his thesis about?</button>
+            <button type="button">What is his best forecasting result?</button>
             <button type="button">Which projects use LLMs?</button>
+            <button type="button">Is he a good fit for an AI engineer role?</button>
           </div>
           <form class="chat-form">
             <label class="sr-only" for="chat-input">Your question</label>
